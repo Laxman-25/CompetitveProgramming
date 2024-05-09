@@ -6,50 +6,28 @@ class Solution {
         int max0 = Integer.MIN_VALUE;
         int onecount=0, zerocount=0;
 
-        for(int i=0; i<s.length()-1; i++){
-            
-            if(s.charAt(i)=='0' && s.charAt(i+1)=='0'){
-                zerocount+=1;
-            }
+        for(int i=0; i<s.length(); i++){
+            char c = s.charAt(i);
 
-            if(s.charAt(i)=='1' && s.charAt(i+1)=='1'){
+            if(c=='0'){
+                zerocount+=1;
+                max1 = Math.max(max1, onecount);
+                onecount = 0;
+            }
+            else{
                 onecount+=1;
-            }
-
-            if(s.charAt(i)=='0' && s.charAt(i+1)=='1'){
-                zerocount+=1;
-                if(zerocount>max0){
-                    max0 = zerocount;
-                }
+                max0 = Math.max(max0, zerocount);
                 zerocount=0;
             }
 
-            if(s.charAt(i)=='1' && s.charAt(i+1)=='0'){
-                onecount+=1;
-                if(onecount>max1){
-                    max1 = onecount;
-                }
-                onecount=0;
-            }
-
         }
 
-        if(s.charAt(s.length()-1)=='0'){
-            zerocount+=1;
-        }
+        max1 = Math.max(max1, onecount);
+        max0 = Math.max(max0, zerocount);
 
-        if(s.charAt(s.length()-1)=='1'){
-            onecount+=1;
-        }
+        
 
-        if(zerocount>max0){
-            max0 = zerocount;
-        }
-        if(onecount>max1){
-            max1 = onecount;
-        }
-
-        return max1>max0?true:false;
+        return max1>max0;
 
     }
 }
