@@ -1,0 +1,24 @@
+// Leetcode // 1894. Find the Student that Will Replace the Chalk //
+
+class Solution {
+    public int chalkReplacer(int[] chalk, int k) {
+        long sum = 0;
+        int n = chalk.length;
+
+        for(int i=0; i< n; i++){
+            sum+=chalk[i];
+        }
+
+        long remSum = k%sum;
+
+        for(int i=0; i<n ; i++){
+            remSum-=chalk[i];
+            if(remSum<0){
+                return i;
+            }
+        }
+
+        return n-1;
+
+    }
+}
