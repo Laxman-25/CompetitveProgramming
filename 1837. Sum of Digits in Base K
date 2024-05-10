@@ -1,0 +1,16 @@
+// Leetcode // 1837. Sum of Digits in Base K
+
+class Solution {
+    public int sumBase(int num, int k) {
+        
+         int sum = 0;
+    
+    while (num > 0) {
+        int digit = num % k;
+        sum += digit;
+        num /= k;
+    }
+    
+    return sum;
+    }
+}
