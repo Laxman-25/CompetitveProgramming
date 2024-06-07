@@ -1,0 +1,22 @@
+// 1513. Number of Substrings With Only 1s // Leetcode
+
+class Solution {
+    public int numSub(String s) {
+        long result=0;
+        int[] strHash = new int[s.length()];
+        strHash[0] = (s.charAt(0)=='1')?1:0;
+        result+=strHash[0];
+
+        for(int i=1; i<s.length(); i++){
+            if(s.charAt(i)=='1'){
+                strHash[i] = strHash[i-1]+1;
+            }
+            else{
+                strHash[i]=0;
+            }
+            result+=strHash[i];
+        }
+        result = result % 1000000007;
+        return (int) result;
+    }
+}
