@@ -1,0 +1,32 @@
+// Leetcode // 1805. Number of Different Integers in a String //
+
+import java.math.BigInteger;
+class Solution {
+    public int numDifferentIntegers(String word) {
+        HashSet<BigInteger> nums = new HashSet<BigInteger>();
+        String numToBe = "";
+        Queue<Character> numStack = new LinkedList<>();
+
+        for(char ch : word.toCharArray()){
+            if(ch>='0' && ch<='9'){
+                numStack.add(ch);
+            }
+            else{
+                numToBe = "";
+                while(!numStack.isEmpty()){
+                    numToBe += numStack.remove();
+                }
+                if(numToBe!="")
+                    nums.add(new BigInteger(numToBe));
+            }
+        }
+        numToBe="";
+        while(!numStack.isEmpty()){
+            numToBe += numStack.remove();
+        }
+        if(numToBe!="")
+            nums.add(new BigInteger(numToBe));
+        
+        return nums.size();
+    }
+}
